@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>   <!-- 黑色 -->
+    <color name="white">#FFFFFFFF</color>   <!-- 白色 -->
+    <color name="white_shift">#FFF8E1</color>   <!-- 白班 -->
+    <color name="night_shift">#37474F</color>   <!-- 夜班 -->
+    <color name="rest_shift">#E0E0E0</color>   <!-- 休息 -->
+    <color name="rest_text">#424242</color>   <!-- 休息文本 -->
+    <color name="colorPrimary">#2196F3</color>   <!-- 主色 -->
+    <color name="colorPrimaryDark">#1976D2</color>   <!-- 主色深 -->
+    <color name="colorAccent">#03DAC5</color>   <!-- 强色 -->
+    <color name="shift_day">#BBDEFB</color>   <!-- 浅蓝：白班 -->
+    <color name="shift_night">#CFD8DC</color> <!-- 浅灰：夜班 -->
+    <color name="shift_rest">#C8E6C9</color>  <!-- 浅绿：休息 -->
+    <color name="inactive_month_text">#AAAAAA</color> <!-- 无效月份文本 -->
+    <color name="today_highlight">#FFD966</color> <!-- 今日高亮 -->
+</resources>
