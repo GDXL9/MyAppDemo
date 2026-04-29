@@ -54,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         updateWidget()
 
+        WidgetUpdateReceiver.setDailyUpdate(this)
+
         prevButton.setOnClickListener {
             currentMonth--
             if (currentMonth < 0) {
