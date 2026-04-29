@@ -244,23 +244,14 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * 更新桌面小组件
-     * 当应用打开时自动调用，确保所有小组件显示最新的排班信息
+     * 当应用打开时自动调用，确保小组件显示最新的排班信息
      */
     private fun updateWidget() {
-        updateWidget(ShiftWidget::class.java)
-        updateWidget(ShiftWidget1x4::class.java)
-    }
-
-    /**
-     * 更新指定类型的小组件
-     * @param widgetClass 小组件类
-     */
-    private fun updateWidget(widgetClass: Class<out android.appwidget.AppWidgetProvider>) {
         val appWidgetManager = AppWidgetManager.getInstance(this)
-        val componentName = ComponentName(this, widgetClass)
+        val componentName = ComponentName(this, ShiftWidget::class.java)
         val appWidgetIds = appWidgetManager.getAppWidgetIds(componentName)
         if (appWidgetIds.isNotEmpty()) {
-            val intent = android.content.Intent(this, widgetClass)
+            val intent = android.content.Intent(this, ShiftWidget::class.java)
             intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
             sendBroadcast(intent)
