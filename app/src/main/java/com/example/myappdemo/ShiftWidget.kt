@@ -131,6 +131,7 @@ class ShiftWidget : AppWidgetProvider() {
 
             // 如果是今天，高亮显示日期和班次
             if (isToday(currentDate, today)) {
+                views.setInt(dayIds[i][0], "setTextColor", ContextCompat.getColor(context, R.color.today_highlight))
                 views.setInt(dayIds[i][1], "setTextColor", ContextCompat.getColor(context, R.color.today_highlight))
                 views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.today_highlight))
             }

@@ -16,4 +16,10 @@
     <color name="shift_rest">#C8E6C9</color>  <!-- 浅绿：休息 -->
     <color name="inactive_month_text">#AAAAAA</color> <!-- 无效月份文本 -->
     <color name="today_highlight">#FFD966</color> <!-- 今日高亮 -->
+    <color name="transparent">#00000000</color> <!-- 完全透明 -->
+    <color name="transparent_white">#00FFFFFF</color> <!-- 透明白色 -->
+    <color name="transparent_black">#00000000</color> <!-- 透明黑色 -->
+    <color name="transparent_primary">#402196F3</color> <!-- 40%透明度主色 -->
+    <color name="transparent_gray">#80808080</color> <!-- 50%透明度灰色 -->
+    <color name="transparent_light">#CCFFFFFF</color> <!-- 80%透明度白色 -->
 </resources>
