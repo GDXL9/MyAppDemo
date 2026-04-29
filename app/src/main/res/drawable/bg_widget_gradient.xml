@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- 小组件的背景布局2（渐变色） -->
+
+    <!-- 渐变色 -->
+    <gradient
+        android:startColor="@color/shift_day"
+        android:endColor="@color/colorPrimaryLight"
+        android:angle="135"
+        android:type="linear" />
+
+    <!-- 圆角 -->
+    <corners android:radius="20dp" />
+
+    <!-- 边框 -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/colorPrimaryLight"
+        android:alpha="0.3" />
+
+    <!-- 内边距 -->
+    <padding
+        android:left="12dp"
+        android:top="12dp"
+        android:right="12dp"
+        android:bottom="12dp" />
+
+</shape>

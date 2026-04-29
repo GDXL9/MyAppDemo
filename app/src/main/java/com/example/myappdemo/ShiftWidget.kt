@@ -122,17 +122,17 @@ class ShiftWidget : AppWidgetProvider() {
             views.setTextViewText(dayIds[i][1], dateStr)
             views.setTextViewText(dayIds[i][2], shift)
 
-            // 如果是今天，高亮显示日期和班次
-            if (isToday(currentDate, today)) {
-                views.setInt(dayIds[i][1], "setTextColor", ContextCompat.getColor(context, R.color.colorPrimary))
-                views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.colorPrimary))
-            }
-
             // 根据班次类型设置不同的颜色
             when (shift) {
-                "白" -> views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.colorPrimary))
-                "夜" -> views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.night_shift))
-                "休" -> views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.rest_shift))
+                "白" -> views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.blue))
+                "夜" -> views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.gray))
+                "休" -> views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.pink))
+            }
+
+            // 如果是今天，高亮显示日期和班次
+            if (isToday(currentDate, today)) {
+                views.setInt(dayIds[i][1], "setTextColor", ContextCompat.getColor(context, R.color.today_highlight))
+                views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.today_highlight))
             }
 
             // 构建日期范围字符串（只取周一和周日）

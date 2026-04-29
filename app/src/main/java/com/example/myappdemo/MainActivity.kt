@@ -1,6 +1,8 @@
 package com.example.myappdemo
 
 import android.app.AlertDialog
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.os.Bundle
 import android.widget.Button
 import android.widget.GridView
@@ -49,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         currentMonth = now.get(Calendar.MONTH)
 
         refreshCalendar()
+
+        updateWidget()
 
         prevButton.setOnClickListener {
             currentMonth--
@@ -235,4 +239,20 @@ class MainActivity : AppCompatActivity() {
         val shift: String,
         val isCurrentMonth: Boolean
     )
+
+    /**
+     * 更新桌面小组件
+     * 当应用打开时自动调用，确保小组件显示最新的排班信息
+     */
+    private fun updateWidget() {
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+        val componentName = ComponentName(this, ShiftWidget::class.java)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(componentName)
+        if (appWidgetIds.isNotEmpty()) {
+            val intent = android.content.Intent(this, ShiftWidget::class.java)
+            intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
+            sendBroadcast(intent)
+        }
+    }
 }
