@@ -84,6 +84,10 @@ class ShiftWidget1x4 : AppWidgetProvider() {
 
         // 获取今天的日期（重置时分秒为0，用于日期比较）
         val today = Calendar.getInstance()
+        today.set(Calendar.HOUR_OF_DAY, 0)
+        today.set(Calendar.MINUTE, 0)
+        today.set(Calendar.SECOND, 0)
+        today.set(Calendar.MILLISECOND, 0)
 
         // 获取本周第一天（周一）的日期
         val firstDayOfWeek = getFirstDayOfWeek(today)
