@@ -125,6 +125,10 @@ class ShiftWidget : AppWidgetProvider() {
             views.setTextViewText(dayIds[i][1], dateStr)
             views.setTextViewText(dayIds[i][2], shift)
 
+            // 渲染星期名称、日期的显示颜色
+            views.setInt(dayIds[i][0], "setTextColor", ContextCompat.getColor(context, R.color.black))
+            views.setInt(dayIds[i][1], "setTextColor", ContextCompat.getColor(context, R.color.black))
+
             // 根据班次类型设置不同的颜色
             when (shift) {
                 "白" -> views.setInt(dayIds[i][2], "setTextColor", ContextCompat.getColor(context, R.color.blue))
