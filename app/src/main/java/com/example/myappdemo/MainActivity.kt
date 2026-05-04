@@ -1,7 +1,11 @@
 package com.example.myappdemo
 
+import android.app.AlarmManager
 import android.app.AlertDialog
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Button
 import android.widget.GridView
 import android.widget.Toast
@@ -39,6 +43,36 @@ class MainActivity : AppCompatActivity() {
         prevButton.setOnClickListener { changeMonth(-1) }
         nextButton.setOnClickListener { changeMonth(1) }
         monthYearButton.setOnClickListener { showYearMonthPicker() }
+
+        // 检查精确闹钟权限（Android 12+）
+        checkExactAlarmPermission()
+    }
+
+    /**
+     * Android 12+ 检查精确闹钟权限，如未授权则弹窗引导用户开启
+     */
+    private fun checkExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+            if (!alarmManager.canScheduleExactAlarms()) {
+                AlertDialog.Builder(this)
+                    .setTitle("需要开启后台权限")
+                    .setMessage("为了让小组件在每天凌晨自动更新，需要开启“闹铃和提醒”权限。")
+                    .setPositiveButton("去开启") { _, _ ->
+                        // 跳转到系统设置页面
+                        val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
+                            data = android.net.Uri.parse("package:$packageName")
+                        }
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("暂不开启") { dialog, _ ->
+                        dialog.dismiss()
+                        Toast.makeText(this, "缺少权限可能导致凌晨不自动更新", Toast.LENGTH_SHORT).show()
+                    }
+                    .setCancelable(false)
+                    .show()
+            }
+        }
     }
 
     private fun changeMonth(delta: Int) {
