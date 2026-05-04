@@ -1,0 +1,8 @@
+Logcat的使用方法
+
+Log.v("MainActivity", "VERBOSE = 沉余信息 2 ");
+Log.d("MainActivity", "DEBUG = debug信息 3 ");
+Log.i("MainActivity", "INFO = 正常信息 4 ");
+Log.w("MainActivity", "WARN = 警告信息 5 ");
+Log.e("MainActivity", "ERROR = 错误信息 6 ");
+

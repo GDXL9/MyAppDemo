@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import java.util.Calendar
 
+/**
+ * 主活动。
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var monthYearButton: Button

@@ -3,6 +3,9 @@ package com.example.myappdemo
 import androidx.lifecycle.ViewModel
 import java.util.Calendar
 
+/**
+ * 日历视图模型。
+ */
 class CalendarViewModel : ViewModel() {
     var currentYear: Int = 0
         private set

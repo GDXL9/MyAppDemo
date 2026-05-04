@@ -3,4 +3,6 @@
     <string name="prev_month">上月</string>
     <string name="next_month">下月</string>
     <string name="year_month">选择年月</string>
+    <string name="settings">设置</string>
+    <string name="back">返回</string>
 </resources>

@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
+/**
+ * 日历适配器。
+ */
 class CalendarAdapter(
     private val context: android.content.Context,
     private val daysList: List<CalendarDay>,
