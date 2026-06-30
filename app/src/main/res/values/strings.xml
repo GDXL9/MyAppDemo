@@ -5,4 +5,5 @@
     <string name="year_month">选择年月</string>
     <string name="settings">设置</string>
     <string name="back">返回</string>
+    <string name="shift_scheduling">班次排列</string>
 </resources>

@@ -6,11 +6,10 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.widget.Button
-import android.widget.GridView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.myappdemo.databinding.ActivityMainBinding
 import java.util.Calendar
 
 /**
@@ -18,22 +17,19 @@ import java.util.Calendar
  */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var monthYearButton: Button
-    private lateinit var gridView: GridView
+    private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: CalendarViewModel
     private lateinit var adapter: CalendarAdapter
 
-    // 在活动创建时初始化视图和ViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(CalendarViewModel::class.java)
 
-        monthYearButton = findViewById(R.id.monthYearButton)
-        gridView = findViewById(R.id.calendarGrid)
-        val prevButton: Button = findViewById(R.id.prevMonthButton)
-        val nextButton: Button = findViewById(R.id.nextMonthButton)
+        // 初始化 ShiftConfig（从 SharedPreferences 读取）
+        ShiftConfig.init(this)
 
         refreshCalendar()
 
@@ -41,12 +37,22 @@ class MainActivity : AppCompatActivity() {
         WidgetViewsFactory.updateAllWidgets(this)
         WidgetUpdateReceiver.setDailyUpdate(this)
 
-        prevButton.setOnClickListener { changeMonth(-1) }
-        nextButton.setOnClickListener { changeMonth(1) }
-        monthYearButton.setOnClickListener { showYearMonthPicker() }
+        binding.prevMonthButton.setOnClickListener { changeMonth(-1) }
+        binding.nextMonthButton.setOnClickListener { changeMonth(1) }
+        binding.monthYearButton.setOnClickListener { showYearMonthPicker() }
+        binding.btnSettings.setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
 
         // 检查精确闹钟权限（Android 12+）
         checkExactAlarmPermission()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 从设置界面返回后刷新日历
+        ShiftConfig.init(this)
+        refreshCalendar()
     }
 
     /**
@@ -58,9 +64,8 @@ class MainActivity : AppCompatActivity() {
             if (!alarmManager.canScheduleExactAlarms()) {
                 AlertDialog.Builder(this)
                     .setTitle("需要开启后台权限")
-                    .setMessage("为了让小组件在每天凌晨自动更新，需要开启“闹铃和提醒”权限。")
+                    .setMessage("为了让小组件在每天凌晨自动更新，需要开启'闹铃和提醒'权限。")
                     .setPositiveButton("去开启") { _, _ ->
-                        // 跳转到系统设置页面
                         val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
                             data = android.net.Uri.parse("package:$packageName")
                         }
@@ -91,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshCalendar() {
-        monthYearButton.text = viewModel.getMonthTitle()
+        binding.monthYearButton.text = viewModel.getMonthTitle()
 
         val daysList = viewModel.generateCalendarDays()
 
@@ -117,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             }
             Toast.makeText(this, "${year}年${month+1}月${day}日:${shift}班\n$msg", Toast.LENGTH_SHORT).show()
         }
-        gridView.adapter = adapter
+        binding.calendarGrid.adapter = adapter
     }
 
     private fun showYearMonthPicker() {

@@ -6,6 +6,7 @@ import android.content.Context
 
 class ShiftWidget : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+        ShiftConfig.init(context)
         for (appWidgetId in appWidgetIds) {
             appWidgetManager.updateAppWidget(appWidgetId, WidgetViewsFactory.createShiftWidgetViews(context))
         }

@@ -106,6 +106,8 @@ class WidgetUpdateReceiver : BroadcastReceiver() {
      */
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == ACTION_UPDATE_WIDGET) {
+            // 重新加载配置（可能用户已修改设置）
+            ShiftConfig.init(context)
             // 直接更新所有小组件（不再使用广播）
             WidgetViewsFactory.updateAllWidgets(context)
 

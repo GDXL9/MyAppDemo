@@ -8,6 +8,9 @@ dependencies {
 
 android {
     namespace = "com.example.myappdemo"
+    buildFeatures {
+        viewBinding = true
+    }
     compileSdk {
         version = release(36) {
             minorApiLevel = 1

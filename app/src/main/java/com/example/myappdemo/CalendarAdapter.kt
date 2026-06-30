@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.TextView
+import com.example.myappdemo.databinding.ItemCalendarDayBinding
 
 /**
  * 日历适配器。
@@ -21,38 +21,42 @@ class CalendarAdapter(
     override fun getItemId(position: Int) = position.toLong()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.item_calendar_day, parent, false)
+        val binding = if (convertView == null) {
+            val itemBinding = ItemCalendarDayBinding.inflate(LayoutInflater.from(context), parent, false)
+            itemBinding.root.tag = itemBinding
+            itemBinding
+        } else {
+            convertView.tag as ItemCalendarDayBinding
+        }
 
-        val dayText = view.findViewById<TextView>(R.id.dayText)
-        val shiftText = view.findViewById<TextView>(R.id.shiftText)
         val item = daysList[position]
 
-        dayText.text = item.day.toString()
-        shiftText.text = item.shift
+        binding.dayText.text = item.day.toString()
+        binding.shiftText.text = item.shift
 
         val bgRes = when (item.shift) {
             "白" -> R.drawable.bg_shift_day
             "夜" -> R.drawable.bg_shift_night
             else -> R.drawable.bg_shift_rest
         }
-        view.setBackgroundResource(bgRes)
+        binding.root.setBackgroundResource(bgRes)
 
         val textColor = if (item.isCurrentMonth) {
             context.getColor(android.R.color.black)
         } else {
             context.getColor(R.color.inactive_month_text)
         }
-        dayText.setTextColor(textColor)
-        shiftText.setTextColor(textColor)
+        binding.dayText.setTextColor(textColor)
+        binding.shiftText.setTextColor(textColor)
 
         if (todayCheck(item)) {
-            view.setBackgroundResource(R.drawable.bg_today_highlight)
+            binding.root.setBackgroundResource(R.drawable.bg_today_highlight)
         }
 
-        view.setOnClickListener {
+        binding.root.setOnClickListener {
             onItemClick(item.year, item.month, item.day)
         }
-        return view
+
+        return binding.root
     }
 }
