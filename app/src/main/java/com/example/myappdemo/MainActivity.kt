@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: CalendarViewModel
     private lateinit var adapter: CalendarAdapter
 
+    // 在活动创建时初始化视图和ViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
