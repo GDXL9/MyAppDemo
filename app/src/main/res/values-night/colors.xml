@@ -10,46 +10,58 @@
 <resources>
 
     <!-- ==================== 文字颜色 (Text) ==================== -->
-    <!-- 深色模式下主要文字为白色 -->
+    <!-- 白色 - 主要文字 - MainActivity/SettingsActivity 标题、正文、按钮文字 -->
     <color name="text_primary">#FFFFFFFF</color>
-    <!-- 次要文字 —— 偏暗的灰白，降低视觉强度 -->
+    <!-- 灰白 - 次要文字 - SettingsActivity 说明文字、周期预览、小组件日期范围 -->
     <color name="text_secondary">#FFB0BEC5</color>
-    <!-- 禁用文字 —— 更深的灰色 -->
-    <color name="text_disabled">#FF757575</color>
+    <!-- 中灰 - 禁用/非当前状态文字 - CalendarAdapter 非当月日期 -->
 
     <!-- ==================== 背景颜色 (Background) ==================== -->
-    <!-- 深色模式页面背景 —— Material 推荐深灰 -->
-    <color name="bg_surface">#FF121212</color>
-    <!-- 白班背景 —— 降低明度避免刺眼 -->
+    <!-- 深灰 - 页面表面背景 - activity_main/activity_settings 根布局 (via themes.xml colorBackground) -->
+    <color name="bg_surface">#FF1E1E1E</color>
+    <!-- 深蓝 - 白班日历格子背景 - item_calendar_day "白"班 (bg_shift_day.xml) -->
     <color name="bg_shift_day">#FF1565C0</color>
-    <!-- 夜班背景 —— 深灰蓝 -->
+    <!-- 深灰蓝 - 夜班日历格子背景 - item_calendar_day "夜"班 (bg_shift_night.xml) -->
     <color name="bg_shift_night">#FF455A64</color>
-    <!-- 休息背景 —— 深绿 -->
+    <!-- 深绿 - 休息日历格子背景 - item_calendar_day "休"班 (bg_shift_rest.xml) -->
     <color name="bg_shift_rest">#FF2E7D32</color>
 
     <!-- ==================== 强调色 (Accent) ==================== -->
-    <!-- 深色模式下强调色需要更亮以保证对比度 -->
+    <!-- 亮蓝 - 白班强调色 - WidgetViewsFactory "白"班标签文字颜色 -->
     <color name="accent_blue">#FF4FC3F7</color>
+    <!-- 灰白 - 夜班强调色 - WidgetViewsFactory "夜"班标签文字颜色 -->
     <color name="accent_gray">#FFB0BEC5</color>
+    <!-- 亮绿 - 正向状态强调色 - 预留，暂未直接引用 -->
     <color name="accent_green">#FF69F0AE</color>
+    <!-- 亮粉 - 休息强调色 - WidgetViewsFactory "休"班标签文字颜色 -->
     <color name="accent_pink">#FFFF80AB</color>
 
     <!-- ==================== 主题色 (Theme) ==================== -->
+    <!-- 亮蓝 - 主题主色 - themes.xml colorPrimary，影响按钮、进度条等系统控件 -->
     <color name="theme_primary">#FF4FC3F7</color>
+    <!-- 蓝色 - 主题主色深色 - themes.xml colorPrimaryDark，状态栏颜色 -->
     <color name="theme_primary_dark">#FF0288D1</color>
+    <!-- 浅蓝 - 主题主色浅色 - bg_widget_gradient.xml 渐变终点色、边框色 -->
     <color name="theme_primary_light">#FF81D4FA</color>
+    <!-- 青色 - 主题强调色 - themes.xml colorAccent -->
     <color name="theme_accent">#FF03DAC5</color>
 
     <!-- ==================== 高亮 (Highlight) ==================== -->
-    <!-- 深色模式下高亮用偏暗的黄，避免过亮 -->
+    <!-- 暗黄 - 今日高亮 - item_calendar_day 今日格子背景 (bg_today_highlight.xml)、WidgetViewsFactory 今日文字颜色 -->
     <color name="highlight_today">#FFF9A825</color>
 
     <!-- ==================== 透明系列 (Transparent) ==================== -->
+    <!-- 全透明 - 通用透明 - 预留 -->
     <color name="transparent">#00000000</color>
+    <!-- 深灰全透明 - 表面透明 - 预留 -->
     <color name="transparent_surface">#00121212</color>
+    <!-- 全透明 - 遮罩透明 - 预留 -->
     <color name="transparent_overlay">#00000000</color>
+    <!-- 亮蓝25%透明 - 主色透明 - 预留 -->
     <color name="transparent_primary">#404FC3F7</color>
+    <!-- 深灰蓝50%透明 - 灰色透明 - drawable-night/bg_widget.xml 深色小组件背景、边框 -->
     <color name="transparent_gray">#80455A64</color>
+    <!-- 深灰80%透明 - 深色遮罩 - 预留 -->
     <color name="transparent_light">#CC121212</color>
 
 </resources>

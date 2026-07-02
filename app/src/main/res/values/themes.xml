@@ -1,16 +1,41 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!--
+    =============================================================================
+    主题配置文件 (themes.xml) — 明亮模式
+    =============================================================================
+    说明：本文件定义应用全局主题，所有 Activity 页面的视觉基调由此控制。
+          themes.xml 中的属性会覆盖父主题默认值，values-night/ 中有对应深色版本。
+    =============================================================================
+    -->
+
+    <!-- ==================== 主应用主题 ==================== -->
+    <!--
+        Base.Theme.MyAppDemo — 应用基础主题
+        父主题：Theme.Material3.DayNight.NoActionBar（Material3 自动适配日夜，无 ActionBar）
+        用途：所有 Activity 的根主题
+    -->
     <style name="Base.Theme.MyAppDemo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- 白色 -> 页面背景色 - activity_main/activity_settings 根布局 (android:background="?android:attr/colorBackground") -->
+        <item name="android:colorBackground">@color/bg_surface</item>
     </style>
 
+    <!-- ==================== 排班日历专属主题（备用） ==================== -->
+    <!--
+        Theme.ShiftCalendar — 排班日历主题
+        父主题：Theme.MaterialComponents.DayNight.NoActionBar（Material Components 适配日夜，无 ActionBar）
+        用途：备用主题，当前未在 AndroidManifest 中使用，可通过代码切换
+    -->
     <style name="Theme.ShiftCalendar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- 蓝色 -> 主题主色 - 影响按钮、Switch、进度条等系统控件的主色调 -->
         <item name="colorPrimary">@color/theme_primary</item>
+        <!-- 深蓝 -> 主题主色深色 - 状态栏背景色 (android:statusBarColor) -->
         <item name="colorPrimaryDark">@color/theme_primary_dark</item>
+        <!-- 青色 -> 主题强调色 - 影响CheckBox、FloatingActionButton等控件的颜色 -->
         <item name="colorAccent">@color/theme_accent</item>
+        <!-- 深蓝 -> 状态栏颜色 - 手机顶部状态栏背景色，引用 colorPrimaryDark -->
         <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
     </style>
 
+    <!-- Theme.MyAppDemo — 最终应用主题，继承 Base，无额外覆写 -->
     <style name="Theme.MyAppDemo" parent="Base.Theme.MyAppDemo" />
 </resources>

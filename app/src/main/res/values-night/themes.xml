@@ -1,7 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!--
+    =============================================================================
+    主题配置文件 (themes.xml) — 深色模式
+    =============================================================================
+    说明：本文件与 values/themes.xml 一一对应，仅属性值不同。
+          系统切换到夜间模式时自动加载此文件中的定义。
+    =============================================================================
+    -->
+
+    <!-- ==================== 主应用主题 ==================== -->
+    <!--
+        Base.Theme.MyAppDemo — 应用基础主题（深色版本）
+        父主题：Theme.Material3.DayNight.NoActionBar（自动适配深色）
+        用途：所有 Activity 的根主题
+    -->
     <style name="Base.Theme.MyAppDemo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- 深灰 -> 页面背景色 - activity_main/activity_settings 根布局 (android:background="?android:attr/colorBackground") -->
+        <item name="android:colorBackground">@color/bg_surface</item>
     </style>
+
 </resources>
