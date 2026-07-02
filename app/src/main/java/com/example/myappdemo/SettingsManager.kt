@@ -16,6 +16,12 @@ object SettingsManager {
     private const val KEY_BASE_YEAR = "base_year"
     private const val KEY_BASE_MONTH = "base_month"
     private const val KEY_BASE_DAY = "base_day"
+    private const val KEY_NIGHT_MODE = "night_mode"
+
+    // 夜间模式值
+    const val NIGHT_MODE_SYSTEM = 0   // 跟随系统
+    const val NIGHT_MODE_LIGHT = 1    // 强制明亮
+    const val NIGHT_MODE_DARK = 2     // 强制黑暗
 
     private const val DEFAULT_CYCLE = "白,夜,休,白,夜,休,休,休"
     private const val DEFAULT_YEAR = 2026
@@ -73,4 +79,13 @@ object SettingsManager {
 
     fun getBaseDay(context: Context): Int =
         getPrefs(context).getInt(KEY_BASE_DAY, DEFAULT_DAY)
+
+    // --- 夜间模式 ---
+
+    fun getNightMode(context: Context): Int =
+        getPrefs(context).getInt(KEY_NIGHT_MODE, NIGHT_MODE_SYSTEM)
+
+    fun saveNightMode(context: Context, mode: Int) {
+        getPrefs(context).edit().putInt(KEY_NIGHT_MODE, mode).apply()
+    }
 }

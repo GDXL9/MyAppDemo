@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.core.content.ContextCompat
 import com.example.myappdemo.databinding.ItemCalendarDayBinding
 
 /**
@@ -42,9 +43,9 @@ class CalendarAdapter(
         binding.root.setBackgroundResource(bgRes)
 
         val textColor = if (item.isCurrentMonth) {
-            context.getColor(android.R.color.black)
+            ContextCompat.getColor(context, R.color.text_primary)
         } else {
-            context.getColor(R.color.inactive_month_text)
+            ContextCompat.getColor(context, R.color.text_disabled)
         }
         binding.dayText.setTextColor(textColor)
         binding.shiftText.setTextColor(textColor)

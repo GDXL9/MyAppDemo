@@ -1,9 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    综合UI文案配置文件 (strings.xml)
+    =============================================================================
+    用途：统一管理应用内所有可见文字，便于多语言适配和集中修改。
+    原则：
+      1. 所有布局文件和代码中不得出现硬编码中文字符串，一律引用此处定义。
+      2. 命名规范：使用小写下划线命名，按功能模块分组。
+      3. 同一语义在不同位置的复用文案使用同一字符串资源。
+    =============================================================================
+-->
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ==================== 应用级 (App Level) ==================== -->
     <string name="app_name">排班App</string>
+
+    <!-- ==================== 通用按钮 (Common Buttons) ==================== -->
     <string name="prev_month">上月</string>
     <string name="next_month">下月</string>
-    <string name="year_month">选择年月</string>
     <string name="settings">设置</string>
     <string name="back">返回</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存设置</string>
+
+    <!-- ==================== 主页面 (Main Activity) ==================== -->
+    <string name="year_month">选择年月</string>
+    <string name="week_monday">一</string>
+    <string name="week_tuesday">二</string>
+    <string name="week_wednesday">三</string>
+    <string name="week_thursday">四</string>
+    <string name="week_friday">五</string>
+    <string name="week_saturday">六</string>
+    <string name="week_sunday">日</string>
+
+    <!-- ==================== 设置页面 (Settings Activity) ==================== -->
     <string name="shift_scheduling">班次排列</string>
+    <string name="setting_base_date_label">基准日期（第一个班次的起始日期）</string>
+    <string name="setting_cycle_label">班次周期（用逗号分隔，如：白,夜,休）</string>
+    <string name="setting_cycle_hint">白,夜,休,白,夜,休,休,休</string>
+    <string name="setting_cycle_preview_prefix">当前周期：</string>
+    <string name="setting_cycle_preview_suffix">天一循环</string>
+    <string name="setting_night_mode_label">夜间模式</string>
+    <string name="setting_save_success">设置已保存</string>
+    <string name="setting_cycle_empty_error">班次周期不能为空</string>
+    <string name="setting_cycle_invalid_error">请输入有效的班次周期</string>
+
+    <!-- ==================== 班次提示 (Shift Toast) ==================== -->
+    <string name="shift_day_time">（当日）8:00 ~ 20:00</string>
+    <string name="shift_night_time">（当日）20:00 ~ 次日8:00</string>
+    <string name="shift_rest">今天休息</string>
+    <string name="shift_format">%1$d年%2$d月%3$d日:%4$s班\n%5$s</string>
+
+    <!-- ==================== 权限提示 (Permission) ==================== -->
+    <string name="permission_alarm_title">需要开启后台权限</string>
+    <string name="permission_alarm_message">为了让小组件在每天凌晨自动更新，需要开启"闹铃和提醒"权限。</string>
+    <string name="permission_alarm_go_settings">去开启</string>
+    <string name="permission_alarm_later">暂不开启</string>
+    <string name="permission_alarm_lack_warn">缺少权限可能导致凌晨不自动更新</string>
+
+    <!-- ==================== 小组件 (Widget) ==================== -->
+    <string name="widget_title">本周排班</string>
+    <string name="widget_week_range_format">%1$s - %2$s</string>
+
+    <!-- ==================== 日期格式 (Date Format) ==================== -->
+    <string name="date_format_full">%1$d年%2$d月%3$d日</string>
+
+    <!-- ==================== 设置页周期预览完整格式 ==================== -->
+    <string name="setting_cycle_preview_full">%1$d天一循环</string>
+
+    <!-- ==================== Spinner 选项数组 (Arrays) ==================== -->
+    <string-array name="night_mode_options">
+        <item>跟随系统</item>
+        <item>明亮模式</item>
+        <item>夜间模式</item>
+    </string-array>
+
 </resources>

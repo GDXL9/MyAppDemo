@@ -63,17 +63,17 @@ class MainActivity : AppCompatActivity() {
             val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
             if (!alarmManager.canScheduleExactAlarms()) {
                 AlertDialog.Builder(this)
-                    .setTitle("需要开启后台权限")
-                    .setMessage("为了让小组件在每天凌晨自动更新，需要开启'闹铃和提醒'权限。")
-                    .setPositiveButton("去开启") { _, _ ->
+                    .setTitle(getString(R.string.permission_alarm_title))
+                    .setMessage(getString(R.string.permission_alarm_message))
+                    .setPositiveButton(getString(R.string.permission_alarm_go_settings)) { _, _ ->
                         val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
                             data = android.net.Uri.parse("package:$packageName")
                         }
                         startActivity(intent)
                     }
-                    .setNegativeButton("暂不开启") { dialog, _ ->
+                    .setNegativeButton(getString(R.string.permission_alarm_later)) { dialog, _ ->
                         dialog.dismiss()
-                        Toast.makeText(this, "缺少权限可能导致凌晨不自动更新", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.permission_alarm_lack_warn), Toast.LENGTH_SHORT).show()
                     }
                     .setCancelable(false)
                     .show()
@@ -116,11 +116,19 @@ class MainActivity : AppCompatActivity() {
                 Calendar.getInstance().apply { set(year, month, day, 0, 0, 0) }
             )
             val msg = when (shift) {
-                "白" -> "（当日）8:00 ~ 20:00"
-                "夜" -> "（当日）20:00 ~ 次日8:00"
-                else -> "今天休息"
+                getString(R.string.shift_day_time).take(1) -> getString(R.string.shift_day_time)
+                getString(R.string.shift_night_time).take(1) -> getString(R.string.shift_night_time)
+                else -> getString(R.string.shift_rest)
             }
-            Toast.makeText(this, "${year}年${month+1}月${day}日:${shift}班\n$msg", Toast.LENGTH_SHORT).show()
+            val toastText = getString(
+                R.string.shift_format,
+                year,
+                month + 1,
+                day,
+                shift,
+                msg
+            )
+            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show()
         }
         binding.calendarGrid.adapter = adapter
     }
@@ -140,9 +148,9 @@ class MainActivity : AppCompatActivity() {
         monthPicker.value = viewModel.currentMonth + 1
 
         AlertDialog.Builder(this)
-            .setTitle("选择年月")
+            .setTitle(getString(R.string.year_month))
             .setView(dialogView)
-            .setPositiveButton("确定") { _, _ ->
+            .setPositiveButton(getString(R.string.confirm)) { _, _ ->
                 val year = yearPicker.value
                 val month = monthPicker.value - 1
                 if (year != viewModel.currentYear || month != viewModel.currentMonth) {
@@ -150,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                     refreshCalendar()
                 }
             }
-            .setNegativeButton("取消", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
 }

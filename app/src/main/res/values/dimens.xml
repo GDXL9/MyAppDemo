@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    综合UI尺寸配置文件 (dimens.xml)
+    =============================================================================
+    用途：统一管理应用内所有尺寸参数，包括间距、文字大小、圆角、控件高度等。
+    原则：
+      1. 所有布局文件中不得出现硬编码 dp/sp 值，一律引用此处定义。
+      2. 新增尺寸时先在此定义，再在布局中引用。
+      3. 命名规范：spacing_xxx（间距）、text_xxx（文字）、corner_xxx（圆角）、
+                  height_xxx（高度）、width_xxx（宽度）。
+    =============================================================================
+-->
+<resources>
+
+    <!-- ==================== 间距 (Spacing) ==================== -->
+    <!-- 极小间距 —— 用于图标与文字之间、紧密排列的元素之间 -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <!-- 小间距 —— 用于同一组内部元素之间 -->
+    <dimen name="spacing_sm">8dp</dimen>
+    <!-- 中间距 —— 用于不同组之间的分隔 -->
+    <dimen name="spacing_md">12dp</dimen>
+    <!-- 大间距 —— 用于页面内模块之间的分隔 -->
+    <dimen name="spacing_lg">16dp</dimen>
+    <!-- 特大间距 —— 用于主要模块之间的明显分隔 -->
+    <dimen name="spacing_xl">24dp</dimen>
+    <!-- 页面水平边距 —— 左右两侧统一留白 -->
+    <dimen name="spacing_page_horizontal">16dp</dimen>
+    <!-- 页面顶部边距 —— 状态栏下方起始位置 -->
+    <dimen name="spacing_page_top">16dp</dimen>
+
+    <!-- ==================== 文字大小 (Text Size) ==================== -->
+    <!-- 极小文字 —— 用于小组件内日期、副标签 -->
+    <dimen name="text_xs">10sp</dimen>
+    <!-- 小文字 —— 用于按钮文字、次要说明 -->
+    <dimen name="text_sm">12sp</dimen>
+    <!-- 说明文字 —— 用于提示、预览信息 -->
+    <dimen name="text_caption">13sp</dimen>
+    <!-- 常规文字 —— 用于标签、表单项标题 -->
+    <dimen name="text_body">14sp</dimen>
+    <!-- 中等文字 —— 用于输入框、常规内容 -->
+    <dimen name="text_md">16sp</dimen>
+    <!-- 大文字 —— 用于页面标题、年月选择器 -->
+    <dimen name="text_lg">18sp</dimen>
+    <!-- 特大文字 —— 用于设置页面标题 -->
+    <dimen name="text_xl">20sp</dimen>
+
+    <!-- ==================== 圆角 (Corner Radius) ==================== -->
+    <!-- 小圆角 —— 用于日历格子背景 -->
+    <dimen name="corner_sm">12dp</dimen>
+    <!-- 大圆角 —— 用于小组件背景卡片 -->
+    <dimen name="corner_lg">16dp</dimen>
+
+    <!-- ==================== 控件尺寸 ==================== -->
+    <!-- 导航栏按钮高度 —— 上月/下月/设置按钮统一高度 -->
+    <dimen name="height_nav_button">40dp</dimen>
+    <!-- 导航栏图标按钮尺寸 —— 方形图标按钮 -->
+    <dimen name="size_nav_icon">40dp</dimen>
+
+</resources>

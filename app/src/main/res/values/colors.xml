@@ -1,25 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    颜色综合配置文件 (colors.xml) — 明亮模式
+    =============================================================================
+    命名规范（方便主题切换）：
+      text_xxx      = 文字颜色系列
+      bg_xxx        = 背景/填充颜色系列
+      accent_xxx    = 强调色系列（用于标签、状态标识）
+      theme_xxx     = 主题主色系列
+      highlight_xxx = 高亮/选中颜色
+      transparent   = 透明度系列
+    =============================================================================
+-->
 <resources>
-    <color name="black">#FF000000</color>   <!-- 黑色 -->
-    <color name="white">#FFFFFFFF</color>   <!-- 白色 -->
-    <color name="blue">#007AFF</color>   <!-- 蓝色 -->
-    <color name="gray">#9E9E9E</color>   <!-- 灰色 -->
-    <color name="green">#00C853</color>   <!-- 绿色 -->
-    <color name="pink">#FF69B4</color>   <!-- 粉色 -->
-    <color name="rest_text">#424242</color>   <!-- 休息文本 -->
-    <color name="colorPrimary">#2196F3</color>   <!-- 主色 -->
-    <color name="colorPrimaryDark">#1976D2</color>   <!-- 主色深 -->
-    <color name="colorPrimaryLight">#4DB6AC</color>   <!-- 主色浅 -->
-    <color name="colorAccent">#03DAC5</color>   <!-- 强色 -->
-    <color name="shift_day">#BBDEFB</color>   <!-- 浅蓝：白班 -->
-    <color name="shift_night">#CFD8DC</color> <!-- 浅灰：夜班 -->
-    <color name="shift_rest">#C8E6C9</color>  <!-- 浅绿：休息 -->
-    <color name="inactive_month_text">#AAAAAA</color> <!-- 无效月份文本 -->
-    <color name="today_highlight">#FFD966</color> <!-- 今日高亮 -->
-    <color name="transparent">#00000000</color> <!-- 完全透明 -->
-    <color name="transparent_white">#00FFFFFF</color> <!-- 透明白色 -->
-    <color name="transparent_black">#00000000</color> <!-- 透明黑色 -->
-    <color name="transparent_primary">#402196F3</color> <!-- 40%透明度主色 -->
-    <color name="transparent_gray">#80808080</color> <!-- 50%透明度灰色 -->
-    <color name="transparent_light">#CCFFFFFF</color> <!-- 80%透明度白色 -->
+
+    <!-- ==================== 文字颜色 (Text) ==================== -->
+    <!-- 主要文字 —— 标题、正文、按钮文字 -->
+    <color name="text_primary">#FF000000</color>
+    <!-- 次要文字 —— 说明、预览、辅助信息 -->
+    <color name="text_secondary">#FF666666</color>
+    <!-- 禁用/非当前状态文字 —— 非当月日期、不可点击项 -->
+    <color name="text_disabled">#FFAAAAAA</color>
+
+    <!-- ==================== 背景颜色 (Background) ==================== -->
+    <!-- 页面/卡片表面背景 -->
+    <color name="bg_surface">#FFFFFFFF</color>
+    <!-- 白班背景 —— 日历格子中"白"班的背景色 -->
+    <color name="bg_shift_day">#FF64B5F6</color>
+    <!-- 夜班背景 —— 日历格子中"夜"班的背景色 -->
+    <color name="bg_shift_night">#FFB0BEC5</color>
+    <!-- 休息背景 —— 日历格子中"休"班的背景色 -->
+    <color name="bg_shift_rest">#FF81C784</color>
+
+    <!-- ==================== 强调色 (Accent) ==================== -->
+    <!-- 蓝色强调 —— 白班标签、主色调点缀 -->
+    <color name="accent_blue">#FF2196F3</color>
+    <!-- 灰色强调 —— 夜班标签 -->
+    <color name="accent_gray">#FF757575</color>
+    <!-- 绿色强调 —— 正向状态、休息日标识 -->
+    <color name="accent_green">#FF4CAF50</color>
+    <!-- 粉色强调 —— 休息标签、特殊状态 -->
+    <color name="accent_pink">#FFE91E63</color>
+
+    <!-- ==================== 主题色 (Theme) ==================== -->
+    <color name="theme_primary">#FF2196F3</color>
+    <color name="theme_primary_dark">#FF1976D2</color>
+    <color name="theme_primary_light">#FFBBDEFB</color>
+    <color name="theme_accent">#FF03DAC5</color>
+
+    <!-- ==================== 高亮 (Highlight) ==================== -->
+    <!-- 今日高亮 —— 当前日期边框/背景高亮 -->
+    <color name="highlight_today">#FFFFC107</color>
+
+    <!-- ==================== 透明系列 (Transparent) ==================== -->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_surface">#00FFFFFF</color>
+    <color name="transparent_overlay">#00000000</color>
+    <color name="transparent_primary">#402196F3</color>
+    <color name="transparent_gray">#80757575</color>
+    <color name="transparent_light">#CCFFFFFF</color>
+
 </resources>

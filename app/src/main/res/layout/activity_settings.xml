@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="?android:attr/colorBackground">
 
     <!-- 顶部标题栏 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginBottom="16dp">
@@ -17,12 +18,12 @@
         <Button
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:src="@drawable/ic_chevron_left"
+            android:paddingHorizontal="12dp"
             android:text="@string/back"
-            android:textSize="12sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="0dp"
@@ -31,70 +32,95 @@
             android:text="@string/shift_scheduling"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
             android:gravity="center" />
 
     </LinearLayout>
 
-    <!-- 基准日期设置 -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="基准日期（第一个班次的起始日期）"
-        android:textSize="14sp"
-        android:textColor="#666666"
-        android:layout_marginBottom="8dp" />
-
+    <!-- 基准日期设置分组 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:orientation="vertical"
         android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_base_date_label"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/btnBaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2026年4月25日"
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- 班次周期设置 -->
-    <TextView
+    <!-- 班次周期设置分组 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="班次周期（用逗号分隔，如：白,夜,休）"
-        android:textSize="14sp"
-        android:textColor="#666666"
-        android:layout_marginBottom="8dp" />
+        android:orientation="vertical"
+        android:layout_marginBottom="24dp">
 
-    <EditText
-        android:id="@+id/editShiftCycle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="白,夜,休,白,夜,休,休,休"
-        android:inputType="text"
-        android:textSize="16sp"
-        android:padding="12dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="8dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_cycle_label"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="8dp" />
 
-    <!-- 周期预览 -->
-    <TextView
-        android:id="@+id/tvCyclePreview"
+        <EditText
+            android:id="@+id/editShiftCycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/setting_cycle_hint"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvCyclePreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_cycle_preview_prefix"
+            android:textSize="13sp"
+            android:textColor="?android:attr/textColorSecondary" />
+    </LinearLayout>
+
+    <!-- 夜间模式分组 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="当前周期：8天一循环"
-        android:textSize="13sp"
-        android:textColor="#999999"
-        android:layout_marginBottom="24dp" />
+        android:orientation="vertical"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_night_mode_label"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:id="@+id/spinnerNightMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <!-- 保存按钮 -->
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="保存设置"
+        android:text="@string/save"
         android:textSize="16sp"
         android:paddingTop="12dp"
         android:paddingBottom="12dp" />

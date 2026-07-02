@@ -4,7 +4,9 @@ import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.widget.RemoteViews
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import java.util.Calendar
 
@@ -12,6 +14,34 @@ import java.util.Calendar
  * 统一构建小组件 RemoteViews，避免代码重复
  */
 object WidgetViewsFactory {
+
+    /**
+     * 检测当前应用是否处于夜间模式（优先使用 AppCompatDelegate 设置，其次跟随系统）
+     */
+    private fun isNightMode(context: Context): Boolean {
+        return when (AppCompatDelegate.getDefaultNightMode()) {
+            AppCompatDelegate.MODE_NIGHT_YES -> true
+            AppCompatDelegate.MODE_NIGHT_NO -> false
+            else -> {
+                (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+                        Configuration.UI_MODE_NIGHT_YES
+            }
+        }
+    }
+
+    /**
+     * 根据当前主题获取默认文字颜色
+     */
+    private fun getWidgetTextColor(context: Context): Int {
+        return if (isNightMode(context)) 0xFFFFFFFF.toInt() else 0xFF000000.toInt()
+    }
+
+    /**
+     * 根据当前主题获取日期范围文字颜色
+     */
+    private fun getWidgetDateRangeColor(context: Context): Int {
+        return if (isNightMode(context)) 0xFFB0BEC5.toInt() else 0xFF424242.toInt()
+    }
 
     /**
      * 构建标准小组件（带日期范围标题）的 RemoteViews
@@ -37,6 +67,7 @@ object WidgetViewsFactory {
         )
 
         val dayNames = arrayOf("一", "二", "三", "四", "五", "六", "日")
+        val defaultTextColor = getWidgetTextColor(context)
 
         for (i in 0..6) {
             val current = Calendar.getInstance().apply {
@@ -51,18 +82,18 @@ object WidgetViewsFactory {
             views.setTextViewText(dayIds[i][2], shift)
 
             // 默认颜色
-            views.setInt(dayIds[i][0], "setTextColor", ContextCompat.getColor(context, R.color.black))
-            views.setInt(dayIds[i][1], "setTextColor", ContextCompat.getColor(context, R.color.black))
+            views.setInt(dayIds[i][0], "setTextColor", defaultTextColor)
+            views.setInt(dayIds[i][1], "setTextColor", defaultTextColor)
 
             views.setInt(dayIds[i][2], "setTextColor", when (shift) {
-                "白" -> ContextCompat.getColor(context, R.color.blue)
-                "夜" -> ContextCompat.getColor(context, R.color.gray)
-                else -> ContextCompat.getColor(context, R.color.pink)
+                "白" -> ContextCompat.getColor(context, R.color.accent_blue)
+                "夜" -> ContextCompat.getColor(context, R.color.accent_gray)
+                else -> ContextCompat.getColor(context, R.color.accent_pink)
             })
 
             // 今天高亮
             if (DateUtils.isToday(current)) {
-                val highlight = ContextCompat.getColor(context, R.color.today_highlight)
+                val highlight = ContextCompat.getColor(context, R.color.highlight_today)
                 views.setInt(dayIds[i][0], "setTextColor", highlight)
                 views.setInt(dayIds[i][1], "setTextColor", highlight)
                 views.setInt(dayIds[i][2], "setTextColor", highlight)
@@ -76,6 +107,10 @@ object WidgetViewsFactory {
             add(Calendar.DAY_OF_MONTH, 6)
         }
         views.setTextViewText(R.id.widgetDateRange, DateUtils.formatWeekRange(start, end))
+        views.setInt(R.id.widgetDateRange, "setTextColor", getWidgetDateRangeColor(context))
+
+        // 标题文字颜色
+        views.setInt(R.id.widgetTitle, "setTextColor", defaultTextColor)
 
         // 点击标题打开应用
         val intent = Intent(context, MainActivity::class.java)
@@ -109,6 +144,7 @@ object WidgetViewsFactory {
             intArrayOf(R.id.day7Name, R.id.day7Date, R.id.day7Shift)
         )
         val dayNames = arrayOf("一", "二", "三", "四", "五", "六", "日")
+        val defaultTextColor = getWidgetTextColor(context)
 
         for (i in 0..6) {
             val current = Calendar.getInstance().apply {
@@ -122,16 +158,16 @@ object WidgetViewsFactory {
             views.setTextViewText(dayIds[i][1], dateStr)
             views.setTextViewText(dayIds[i][2], shift)
 
-            views.setInt(dayIds[i][0], "setTextColor", ContextCompat.getColor(context, R.color.black))
-            views.setInt(dayIds[i][1], "setTextColor", ContextCompat.getColor(context, R.color.black))
+            views.setInt(dayIds[i][0], "setTextColor", defaultTextColor)
+            views.setInt(dayIds[i][1], "setTextColor", defaultTextColor)
             views.setInt(dayIds[i][2], "setTextColor", when (shift) {
-                "白" -> ContextCompat.getColor(context, R.color.blue)
-                "夜" -> ContextCompat.getColor(context, R.color.gray)
-                else -> ContextCompat.getColor(context, R.color.pink)
+                "白" -> ContextCompat.getColor(context, R.color.accent_blue)
+                "夜" -> ContextCompat.getColor(context, R.color.accent_gray)
+                else -> ContextCompat.getColor(context, R.color.accent_pink)
             })
 
             if (DateUtils.isToday(current)) {
-                val highlight = ContextCompat.getColor(context, R.color.today_highlight)
+                val highlight = ContextCompat.getColor(context, R.color.highlight_today)
                 views.setInt(dayIds[i][0], "setTextColor", highlight)
                 views.setInt(dayIds[i][1], "setTextColor", highlight)
                 views.setInt(dayIds[i][2], "setTextColor", highlight)
