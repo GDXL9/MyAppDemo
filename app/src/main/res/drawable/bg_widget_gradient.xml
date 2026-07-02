@@ -5,8 +5,8 @@
 
     <!-- 渐变色 -->
     <gradient
-        android:startColor="@color/shift_day"
-        android:endColor="@color/colorPrimaryLight"
+        android:startColor="@color/bg_shift_day"
+        android:endColor="@color/theme_primary_light"
         android:angle="135"
         android:type="linear" />
 
@@ -16,7 +16,7 @@
     <!-- 边框 -->
     <stroke
         android:width="2dp"
-        android:color="@color/colorPrimaryLight"
+        android:color="@color/theme_primary_light"
         android:alpha="0.3" />
 
     <!-- 内边距 -->

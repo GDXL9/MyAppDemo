@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    综合UI样式配置文件 (styles.xml)
+    =============================================================================
+    用途：统一管理应用内所有控件的视觉样式，包括文字样式、按钮样式、
+          标签样式等。通过引用 dimens.xml 和 colors.xml 实现完全解耦。
+    原则：
+      1. 样式名使用语义化命名（WidgetRole），如 TextTitle、LabelCaption。
+      2. 样式中只定义视觉属性（size、color、padding），不定义布局属性
+         （width、height、margin）。
+      3. 新增样式时先评估是否可归入现有样式族，避免样式爆炸。
+    =============================================================================
+-->
+<resources>
+
+    <!-- ==================== 文字样式 (Text Appearance) ==================== -->
+
+    <!-- 页面大标题 —— 用于设置页标题栏、主要页面标题 -->
+    <style name="TextTitle">
+        <item name="android:textSize">@dimen/text_xl</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!-- 页面次级标题 —— 用于年月显示、模块标题 -->
+    <style name="TextHeading">
+        <item name="android:textSize">@dimen/text_lg</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!-- 正文内容 —— 用于按钮文字、输入框、常规文本 -->
+    <style name="TextBody">
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!-- 标签/说明文字 —— 用于设置项标题、分组标签 -->
+    <style name="TextLabel">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <!-- 提示/预览文字 —— 用于周期预览、辅助说明 -->
+    <style name="TextCaption">
+        <item name="android:textSize">@dimen/text_caption</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <!-- 小按钮文字 —— 用于导航栏按钮（上月/下月/设置） -->
+    <style name="TextButtonSmall">
+        <item name="android:textSize">@dimen/text_sm</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!-- 日历格子日号 —— 用于日历中日期数字 -->
+    <style name="TextCalendarDay">
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 日历格子班次 —— 用于日历中班次标签 -->
+    <style name="TextCalendarShift">
+        <item name="android:textSize">@dimen/text_sm</item>
+    </style>
+
+    <!-- ==================== 按钮样式 (Button) ==================== -->
+
+    <!-- 小按钮 —— 用于导航栏（上月/下月/设置），紧凑无最小尺寸 -->
+    <style name="ButtonSmall">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textSize">@dimen/text_sm</item>
+    </style>
+
+    <!-- 主操作按钮 —— 用于保存等关键操作，全宽 -->
+    <style name="ButtonPrimary">
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:paddingTop">@dimen/spacing_md</item>
+        <item name="android:paddingBottom">@dimen/spacing_md</item>
+    </style>
+
+    <!-- 日期选择按钮 —— 用于基准日期选择器 -->
+    <style name="ButtonDatePicker">
+        <item name="android:textSize">@dimen/text_md</item>
+    </style>
+
+    <!-- ==================== 输入框样式 (EditText) ==================== -->
+
+    <!-- 常规输入框 —— 用于班次周期输入 -->
+    <style name="EditTextStandard">
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:padding">@dimen/spacing_md</item>
+        <item name="android:background">@android:drawable/edit_text</item>
+    </style>
+
+    <!-- ==================== 容器样式 (Container) ==================== -->
+
+    <!-- 页面根容器 —— 所有Activity页面的根布局 -->
+    <style name="PageRoot">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/spacing_page_horizontal</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
+    <!-- 水平导航栏容器 —— 用于顶部按钮行 -->
+    <style name="NavBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">@dimen/spacing_page_top</item>
+    </style>
+
+    <!-- 星期标题行容器 -->
+    <style name="WeekHeaderRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_lg</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- 星期标题单元格 -->
+    <style name="WeekHeaderCell">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!-- 设置项分组容器 —— 用于设置页中每个配置项的垂直组合 -->
+    <style name="SettingsGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_xl</item>
+    </style>
+
+</resources>

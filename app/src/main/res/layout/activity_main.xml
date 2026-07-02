@@ -3,23 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/white"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="?android:attr/colorBackground">
 
+    <!-- 顶部导航栏：上月 | 年月选择 | 下月 | 设置 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="16dp"
         android:gravity="center_vertical">
 
         <Button
             android:id="@+id/prevMonthButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/prev_month" />
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="12dp"
+            android:text="@string/prev_month"
+            android:textSize="14sp" />
 
-        <Button
+        <TextView
             android:id="@+id/monthYearButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -28,13 +33,28 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:background="?android:attr/selectableItemBackground"
-            android:textColor="@android:color/black" />
+            android:textColor="?android:attr/textColorPrimary"
+            android:singleLine="true" />
 
         <Button
             android:id="@+id/nextMonthButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/next_month" />
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="12dp"
+            android:text="@string/next_month"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="@string/settings"
+            android:layout_marginStart="4dp"
+            android:textSize="14sp"/>
 
     </LinearLayout>
 
@@ -50,43 +70,63 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="一" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/week_monday" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="二" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/week_tuesday" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="三" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/week_wednesday" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="四" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/week_thursday" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="五" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/week_friday" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="六" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/week_saturday" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="日" />
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:text="@string/week_sunday" />
     </LinearLayout>
 
     <GridView

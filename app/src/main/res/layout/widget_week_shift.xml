@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_widget"
@@ -10,8 +11,8 @@
         android:id="@+id/widgetTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="本周排班"
-        android:textColor="@color/black"
+        android:text="@string/widget_title"
+        android:textColor="@color/text_primary"
         android:textSize="16sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -35,14 +36,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:id="@+id/day1Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
 
             <TextView
@@ -50,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
         </LinearLayout>
 
@@ -66,14 +67,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:id="@+id/day2Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
 
             <TextView
@@ -81,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
         </LinearLayout>
 
@@ -97,14 +98,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:id="@+id/day3Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
 
             <TextView
@@ -112,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
         </LinearLayout>
 
@@ -128,14 +129,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:id="@+id/day4Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
 
             <TextView
@@ -143,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
         </LinearLayout>
 
@@ -159,14 +160,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:id="@+id/day5Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
 
             <TextView
@@ -174,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
         </LinearLayout>
 
@@ -190,14 +191,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:id="@+id/day6Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
 
             <TextView
@@ -205,7 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
         </LinearLayout>
 
@@ -221,14 +222,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
             <TextView
                 android:id="@+id/day7Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
 
             <TextView
@@ -236,7 +237,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -246,7 +247,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="10sp"
-        android:textColor="@color/rest_text"
+        android:textColor="@color/text_secondary"
         android:gravity="center"
         android:paddingTop="8dp"/>
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    =============================================================================
+    颜色综合配置文件 (colors.xml) — 深色模式
+    =============================================================================
+    命名规范与明亮模式完全一致，仅颜色值不同。
+    切换主题时只需替换此文件中的色值即可。
+    =============================================================================
+-->
+<resources>
+
+    <!-- ==================== 文字颜色 (Text) ==================== -->
+    <!-- 深色模式下主要文字为白色 -->
+    <color name="text_primary">#FFFFFFFF</color>
+    <!-- 次要文字 —— 偏暗的灰白，降低视觉强度 -->
+    <color name="text_secondary">#FFB0BEC5</color>
+    <!-- 禁用文字 —— 更深的灰色 -->
+    <color name="text_disabled">#FF757575</color>
+
+    <!-- ==================== 背景颜色 (Background) ==================== -->
+    <!-- 深色模式页面背景 —— Material 推荐深灰 -->
+    <color name="bg_surface">#FF121212</color>
+    <!-- 白班背景 —— 降低明度避免刺眼 -->
+    <color name="bg_shift_day">#FF1565C0</color>
+    <!-- 夜班背景 —— 深灰蓝 -->
+    <color name="bg_shift_night">#FF455A64</color>
+    <!-- 休息背景 —— 深绿 -->
+    <color name="bg_shift_rest">#FF2E7D32</color>
+
+    <!-- ==================== 强调色 (Accent) ==================== -->
+    <!-- 深色模式下强调色需要更亮以保证对比度 -->
+    <color name="accent_blue">#FF4FC3F7</color>
+    <color name="accent_gray">#FFB0BEC5</color>
+    <color name="accent_green">#FF69F0AE</color>
+    <color name="accent_pink">#FFFF80AB</color>
+
+    <!-- ==================== 主题色 (Theme) ==================== -->
+    <color name="theme_primary">#FF4FC3F7</color>
+    <color name="theme_primary_dark">#FF0288D1</color>
+    <color name="theme_primary_light">#FF81D4FA</color>
+    <color name="theme_accent">#FF03DAC5</color>
+
+    <!-- ==================== 高亮 (Highlight) ==================== -->
+    <!-- 深色模式下高亮用偏暗的黄，避免过亮 -->
+    <color name="highlight_today">#FFF9A825</color>
+
+    <!-- ==================== 透明系列 (Transparent) ==================== -->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_surface">#00121212</color>
+    <color name="transparent_overlay">#00000000</color>
+    <color name="transparent_primary">#404FC3F7</color>
+    <color name="transparent_gray">#80455A64</color>
+    <color name="transparent_light">#CC121212</color>
+
+</resources>

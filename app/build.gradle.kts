@@ -8,6 +8,9 @@ dependencies {
 
 android {
     namespace = "com.example.myappdemo"
+    buildFeatures {
+        viewBinding = true
+    }
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -18,8 +21,8 @@ android {
         applicationId = "com.example.myappdemo"
         minSdk = 24
         targetSdk = 36
-        versionCode = 5
-        versionName = "1.0.4"
+        versionCode = 9
+        versionName = "1.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
