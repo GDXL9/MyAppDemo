@@ -1,5 +1,10 @@
 *.iml
 .gradle
+/.gradle-session/
+/.android-session/
+/.kotlin/
+/PROJECT_ANALYSIS.md
+/必读-本地约束.txt
 /local.properties
 /.idea/caches
 /.idea/libraries
