@@ -2,10 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
-dependencies {
-    implementation(libs.material)
-}
-
 android {
     namespace = "com.example.myappdemo"
     buildFeatures {
@@ -21,8 +17,8 @@ android {
         applicationId = "com.example.myappdemo"
         minSdk = 24
         targetSdk = 36
-        versionCode = 9
-        versionName = "1.2.1"
+        versionCode = 10
+        versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,12 +33,14 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
 dependencies {
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

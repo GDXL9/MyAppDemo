@@ -1,11 +1,18 @@
 package com.example.myappdemo
 
+import android.Manifest
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myappdemo.databinding.ActivitySettingsBinding
 import java.util.Calendar
@@ -21,6 +28,18 @@ class SettingsActivity : AppCompatActivity() {
     private var selectedMonth = Calendar.APRIL
     private var selectedDay = 25
     private var selectedNightMode = SettingsManager.NIGHT_MODE_SYSTEM
+    private var selectedWeatherCityId = WeatherCities.DEFAULT.id
+    private var selectedWeatherAlertsEnabled = false
+
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (!granted) {
+            binding.switchWeatherAlerts.isChecked = false
+            selectedWeatherAlertsEnabled = false
+            showNotificationPermissionSettingsDialog()
+        }
+    }
 
     private val nightModeValues = intArrayOf(
         SettingsManager.NIGHT_MODE_SYSTEM,
@@ -36,6 +55,8 @@ class SettingsActivity : AppCompatActivity() {
         loadCurrentSettings()
         setupListeners()
         setupNightModeSpinner()
+        setupWeatherCitySpinner()
+        setupWeatherAlerts()
     }
 
     private fun loadCurrentSettings() {
@@ -43,6 +64,8 @@ class SettingsActivity : AppCompatActivity() {
         selectedMonth = SettingsManager.getBaseMonth(this)
         selectedDay = SettingsManager.getBaseDay(this)
         selectedNightMode = SettingsManager.getNightMode(this)
+        selectedWeatherCityId = SettingsManager.getWeatherCityId(this)
+        selectedWeatherAlertsEnabled = SettingsManager.areWeatherAlertsEnabled(this)
 
         updateBaseDateButton()
         binding.editShiftCycle.setText(SettingsManager.getShiftCycleString(this))
@@ -64,6 +87,75 @@ class SettingsActivity : AppCompatActivity() {
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+    }
+
+    private fun setupWeatherCitySpinner() {
+        val savedCity = WeatherCities.findById(selectedWeatherCityId)
+        val provinces = WeatherCities.PROVINCES
+        val provinceAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            provinces
+        ).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        binding.spinnerWeatherProvince.adapter = provinceAdapter
+        binding.spinnerWeatherProvince.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val province = provinces[position]
+                val preferredCityId = if (province == savedCity.province) savedCity.id else null
+                updateWeatherCitySpinner(province, preferredCityId)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+        val provinceIndex = provinces.indexOf(savedCity.province).coerceAtLeast(0)
+        binding.spinnerWeatherProvince.setSelection(provinceIndex)
+    }
+
+    private fun updateWeatherCitySpinner(province: String, preferredCityId: String?) {
+        val cities = WeatherCities.citiesForProvince(province)
+        val cityAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            cities.map { it.name }
+        ).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        binding.spinnerWeatherCity.adapter = cityAdapter
+        binding.spinnerWeatherCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedWeatherCityId = cities[position].id
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+        val selectedIndex = cities.indexOfFirst { it.id == preferredCityId }.coerceAtLeast(0)
+        binding.spinnerWeatherCity.setSelection(selectedIndex)
+        selectedWeatherCityId = cities[selectedIndex].id
+    }
+
+    private fun setupWeatherAlerts() {
+        binding.switchWeatherAlerts.isChecked = selectedWeatherAlertsEnabled
+        binding.switchWeatherAlerts.setOnCheckedChangeListener { _, checked ->
+            if (checked && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                !WeatherAlertNotifier.hasPermission(this)
+            ) {
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+            selectedWeatherAlertsEnabled = checked
+        }
+    }
+
+    private fun showNotificationPermissionSettingsDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.weather_notification_permission_title)
+            .setMessage(R.string.weather_notification_permission_message)
+            .setPositiveButton(R.string.weather_notification_permission_settings) { _, _ ->
+                startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                    data = Uri.parse("package:$packageName")
+                })
+            }
+            .setNegativeButton(R.string.weather_notification_permission_cancel, null)
+            .show()
     }
 
     private fun setupListeners() {
@@ -133,6 +225,12 @@ class SettingsActivity : AppCompatActivity() {
         // 保存班次设置
         SettingsManager.saveShiftCycle(this, cycle)
         SettingsManager.saveBaseDate(this, selectedYear, selectedMonth, selectedDay)
+        SettingsManager.saveWeatherCityId(this, selectedWeatherCityId)
+        val alertsCanBeEnabled = selectedWeatherAlertsEnabled && WeatherAlertNotifier.hasPermission(this)
+        SettingsManager.saveWeatherAlertsEnabled(this, alertsCanBeEnabled)
+        if (selectedWeatherAlertsEnabled && !alertsCanBeEnabled) {
+            showNotificationPermissionSettingsDialog()
+        }
         ShiftConfig.init(this)
 
         // 保存夜间模式
@@ -144,6 +242,8 @@ class SettingsActivity : AppCompatActivity() {
 
         // 更新所有小组件
         WidgetViewsFactory.updateAllWidgets(this)
+        WeatherUpdateJobService.ensurePeriodic(this)
+        WeatherUpdateJobService.scheduleImmediate(this)
 
         Toast.makeText(this, getString(R.string.setting_save_success), Toast.LENGTH_SHORT).show()
         finish()

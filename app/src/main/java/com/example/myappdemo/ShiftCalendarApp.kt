@@ -11,5 +11,6 @@ class ShiftCalendarApp : Application() {
         super.onCreate()
         // 应用保存的夜间模式
         ThemeHelper.applyNightMode(this)
+        WeatherAlertNotifier.createChannel(this)
     }
 }

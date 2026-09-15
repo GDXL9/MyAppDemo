@@ -8,6 +8,7 @@ import android.content.res.Configuration
 import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import java.time.LocalDate
 import java.util.Calendar
 
 /**
@@ -57,15 +58,17 @@ object WidgetViewsFactory {
         val firstDay = DateUtils.getFirstDayOfWeek(today)
 
         val dayIds = arrayOf(
-            intArrayOf(R.id.day1Name, R.id.day1Date, R.id.day1Shift),
-            intArrayOf(R.id.day2Name, R.id.day2Date, R.id.day2Shift),
-            intArrayOf(R.id.day3Name, R.id.day3Date, R.id.day3Shift),
-            intArrayOf(R.id.day4Name, R.id.day4Date, R.id.day4Shift),
-            intArrayOf(R.id.day5Name, R.id.day5Date, R.id.day5Shift),
-            intArrayOf(R.id.day6Name, R.id.day6Date, R.id.day6Shift),
-            intArrayOf(R.id.day7Name, R.id.day7Date, R.id.day7Shift)
+            intArrayOf(R.id.day1Name, R.id.day1Date, R.id.day1Shift, R.id.day1Weather),
+            intArrayOf(R.id.day2Name, R.id.day2Date, R.id.day2Shift, R.id.day2Weather),
+            intArrayOf(R.id.day3Name, R.id.day3Date, R.id.day3Shift, R.id.day3Weather),
+            intArrayOf(R.id.day4Name, R.id.day4Date, R.id.day4Shift, R.id.day4Weather),
+            intArrayOf(R.id.day5Name, R.id.day5Date, R.id.day5Shift, R.id.day5Weather),
+            intArrayOf(R.id.day6Name, R.id.day6Date, R.id.day6Shift, R.id.day6Weather),
+            intArrayOf(R.id.day7Name, R.id.day7Date, R.id.day7Shift, R.id.day7Weather)
         )
 
+        val city = WeatherCities.findById(SettingsManager.getWeatherCityId(context))
+        val dailyForecasts = WeatherRepository.getCachedDailyForecasts(context, city)
         val dayNames = arrayOf("一", "二", "三", "四", "五", "六", "日")
         val defaultTextColor = getWidgetTextColor(context)
 
@@ -77,13 +80,25 @@ object WidgetViewsFactory {
             val shift = ShiftConfig.getShiftForDate(current)
             val dateStr = DateUtils.formatShortDate(current)
 
+            val epochDay = LocalDate.of(
+                current.get(Calendar.YEAR),
+                current.get(Calendar.MONTH) + 1,
+                current.get(Calendar.DAY_OF_MONTH)
+            ).toEpochDay()
+            val dailyWeather = dailyForecasts[epochDay]
+
             views.setTextViewText(dayIds[i][0], dayNames[i])
             views.setTextViewText(dayIds[i][1], dateStr)
             views.setTextViewText(dayIds[i][2], shift)
+            views.setTextViewText(
+                dayIds[i][3],
+                dailyWeather?.widgetText() ?: context.getString(R.string.weather_unavailable_short)
+            )
 
             // 默认颜色
             views.setInt(dayIds[i][0], "setTextColor", defaultTextColor)
             views.setInt(dayIds[i][1], "setTextColor", defaultTextColor)
+            views.setInt(dayIds[i][3], "setTextColor", getWidgetDateRangeColor(context))
 
             views.setInt(dayIds[i][2], "setTextColor", when (shift) {
                 "白" -> ContextCompat.getColor(context, R.color.accent_blue)
@@ -97,6 +112,7 @@ object WidgetViewsFactory {
                 views.setInt(dayIds[i][0], "setTextColor", highlight)
                 views.setInt(dayIds[i][1], "setTextColor", highlight)
                 views.setInt(dayIds[i][2], "setTextColor", highlight)
+                views.setInt(dayIds[i][3], "setTextColor", highlight)
             }
         }
 
@@ -109,7 +125,7 @@ object WidgetViewsFactory {
         views.setTextViewText(R.id.widgetDateRange, DateUtils.formatWeekRange(start, end))
         views.setInt(R.id.widgetDateRange, "setTextColor", getWidgetDateRangeColor(context))
 
-        // 标题文字颜色
+        views.setTextViewText(R.id.widgetTitle, context.getString(R.string.widget_title_with_city, city.name))
         views.setInt(R.id.widgetTitle, "setTextColor", defaultTextColor)
 
         // 点击标题打开应用
@@ -174,11 +190,21 @@ object WidgetViewsFactory {
             }
         }
 
-        // 为每个格子添加点击事件
+        val city = WeatherCities.findById(SettingsManager.getWeatherCityId(context))
+        val weather = WeatherRepository.getCached(context, city)
+        views.setTextViewText(R.id.widgetWeatherIcon, weather?.icon ?: context.getString(R.string.weather_default_icon))
+        views.setTextViewText(
+            R.id.widgetWeatherText,
+            weather?.let { "${it.cityName}\n${it.temperature}° ${it.description}" }
+                ?: "${city.name}\n${context.getString(R.string.weather_unavailable)}"
+        )
+        views.setInt(R.id.widgetWeatherText, "setTextColor", defaultTextColor)
+
+        // 为每个格子和天气区域添加点击事件
         val intent = Intent(context, MainActivity::class.java)
         val pi = PendingIntent.getActivity(context, 0, intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        val clickIds = arrayOf(R.id.day1, R.id.day2, R.id.day3, R.id.day4, R.id.day5, R.id.day6, R.id.day7)
+        val clickIds = arrayOf(R.id.weatherArea, R.id.day1, R.id.day2, R.id.day3, R.id.day4, R.id.day5, R.id.day6, R.id.day7)
         clickIds.forEach { views.setOnClickPendingIntent(it, pi) }
 
         return views

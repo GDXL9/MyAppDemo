@@ -61,6 +61,24 @@
 
     <!-- ==================== 小组件 (Widget) ==================== -->
     <string name="widget_title">本周排班</string>
+    <string name="widget_title_with_city">本周排班 · %1$s</string>
+    <string name="weather_loading">天气加载中…</string>
+    <string name="weather_unavailable">天气暂不可用</string>
+    <string name="weather_unavailable_short">--</string>
+    <string name="weather_refresh">刷新</string>
+    <string name="weather_default_icon">☁</string>
+    <string name="weather_city_label">天气城市</string>
+    <string name="weather_city_summary">先选择省级地区，再选择 App 和小组件显示天气的城市</string>
+    <string name="weather_province_label">省 / 自治区 / 直辖市 / 特别行政区</string>
+    <string name="weather_city_picker_label">城市</string>
+    <string name="weather_alerts_label">特殊天气提醒</string>
+    <string name="weather_alerts_summary">约每小时检查未来 3 小时；雷暴、冰雹、冻雨、强降雨或强降雪时通知</string>
+    <string name="weather_notification_permission_title">需要通知权限</string>
+    <string name="weather_notification_permission_message">开启通知权限后，应用才能及时发送特殊天气提醒。</string>
+    <string name="weather_notification_permission_settings">去设置</string>
+    <string name="weather_notification_permission_cancel">暂不开启</string>
+    <string name="weather_alert_channel_name">特殊天气提醒</string>
+    <string name="weather_alert_channel_description">未来数小时可能出现的雷暴、强降雨、强降雪等天气提醒</string>
     <string name="widget_week_range_format">%1$s - %2$s</string>
 
     <!-- ==================== 日期格式 (Date Format) ==================== -->

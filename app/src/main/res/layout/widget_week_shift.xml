@@ -15,8 +15,7 @@
         android:textColor="@color/text_primary"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:paddingBottom="8dp"/>
+        android:gravity="center" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,6 +52,17 @@
                 android:textSize="10sp"
                 android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
+
+            <TextView
+                android:id="@+id/day1Weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:paddingTop="3dp"
+                android:text="@string/weather_default_icon"
+                android:textColor="@color/text_secondary"
+                android:textSize="9sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,6 +94,17 @@
                 android:textSize="10sp"
                 android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
+
+            <TextView
+                android:id="@+id/day2Weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:paddingTop="3dp"
+                android:text="@string/weather_default_icon"
+                android:textColor="@color/text_secondary"
+                android:textSize="9sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,6 +136,17 @@
                 android:textSize="10sp"
                 android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
+
+            <TextView
+                android:id="@+id/day3Weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:paddingTop="3dp"
+                android:text="@string/weather_default_icon"
+                android:textColor="@color/text_secondary"
+                android:textSize="9sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,6 +178,17 @@
                 android:textSize="10sp"
                 android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
+
+            <TextView
+                android:id="@+id/day4Weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:paddingTop="3dp"
+                android:text="@string/weather_default_icon"
+                android:textColor="@color/text_secondary"
+                android:textSize="9sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -177,6 +220,17 @@
                 android:textSize="10sp"
                 android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
+
+            <TextView
+                android:id="@+id/day5Weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:paddingTop="3dp"
+                android:text="@string/weather_default_icon"
+                android:textColor="@color/text_secondary"
+                android:textSize="9sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -208,6 +262,17 @@
                 android:textSize="10sp"
                 android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
+
+            <TextView
+                android:id="@+id/day6Weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:paddingTop="3dp"
+                android:text="@string/weather_default_icon"
+                android:textColor="@color/text_secondary"
+                android:textSize="9sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -239,6 +304,17 @@
                 android:textSize="10sp"
                 android:textColor="@color/text_primary"
                 android:paddingTop="2dp"/>
+
+            <TextView
+                android:id="@+id/day7Weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:paddingTop="3dp"
+                android:text="@string/weather_default_icon"
+                android:textColor="@color/text_secondary"
+                android:textSize="9sp" />
         </LinearLayout>
     </LinearLayout>
 

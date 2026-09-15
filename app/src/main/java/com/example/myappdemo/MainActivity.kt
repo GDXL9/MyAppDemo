@@ -1,11 +1,8 @@
 package com.example.myappdemo
 
-import android.app.AlarmManager
 import android.app.AlertDialog
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -43,9 +40,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
-
-        // 检查精确闹钟权限（Android 12+）
-        checkExactAlarmPermission()
+        binding.btnRefreshWeather.setOnClickListener { refreshWeather(forceRefresh = true) }
+        refreshWeather()
+        WeatherUpdateJobService.ensurePeriodic(this)
     }
 
     override fun onResume() {
@@ -53,30 +50,24 @@ class MainActivity : AppCompatActivity() {
         // 从设置界面返回后刷新日历
         ShiftConfig.init(this)
         refreshCalendar()
+        refreshWeather()
     }
 
-    /**
-     * Android 12+ 检查精确闹钟权限，如未授权则弹窗引导用户开启
-     */
-    private fun checkExactAlarmPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-            if (!alarmManager.canScheduleExactAlarms()) {
-                AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.permission_alarm_title))
-                    .setMessage(getString(R.string.permission_alarm_message))
-                    .setPositiveButton(getString(R.string.permission_alarm_go_settings)) { _, _ ->
-                        val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
-                            data = android.net.Uri.parse("package:$packageName")
-                        }
-                        startActivity(intent)
-                    }
-                    .setNegativeButton(getString(R.string.permission_alarm_later)) { dialog, _ ->
-                        dialog.dismiss()
-                        Toast.makeText(this, getString(R.string.permission_alarm_lack_warn), Toast.LENGTH_SHORT).show()
-                    }
-                    .setCancelable(false)
-                    .show()
+    private fun refreshWeather(forceRefresh: Boolean = false) {
+        val city = WeatherCities.findById(SettingsManager.getWeatherCityId(this))
+        binding.weatherCity.text = city.name
+        binding.weatherDetail.text = getString(R.string.weather_loading)
+        binding.btnRefreshWeather.isEnabled = false
+        WeatherRepository.load(this, forceRefresh) { weather ->
+            binding.btnRefreshWeather.isEnabled = true
+            if (weather == null) {
+                binding.weatherIcon.text = getString(R.string.weather_default_icon)
+                binding.weatherDetail.text = getString(R.string.weather_unavailable)
+            } else {
+                binding.weatherCity.text = weather.cityName
+                binding.weatherIcon.text = weather.icon
+                binding.weatherDetail.text = "${weather.temperature}°C · ${weather.description}"
+                WidgetViewsFactory.updateAllWidgets(this)
             }
         }
     }

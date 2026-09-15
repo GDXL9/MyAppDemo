@@ -17,6 +17,8 @@ object SettingsManager {
     private const val KEY_BASE_MONTH = "base_month"
     private const val KEY_BASE_DAY = "base_day"
     private const val KEY_NIGHT_MODE = "night_mode"
+    private const val KEY_WEATHER_CITY_ID = "weather_city_id"
+    private const val KEY_WEATHER_ALERTS_ENABLED = "weather_alerts_enabled"
 
     // 夜间模式值
     const val NIGHT_MODE_SYSTEM = 0   // 跟随系统
@@ -87,5 +89,22 @@ object SettingsManager {
 
     fun saveNightMode(context: Context, mode: Int) {
         getPrefs(context).edit().putInt(KEY_NIGHT_MODE, mode).apply()
+    }
+
+    // --- 天气城市 ---
+
+    fun getWeatherCityId(context: Context): String =
+        getPrefs(context).getString(KEY_WEATHER_CITY_ID, WeatherCities.DEFAULT.id)
+            ?: WeatherCities.DEFAULT.id
+
+    fun saveWeatherCityId(context: Context, cityId: String) {
+        getPrefs(context).edit().putString(KEY_WEATHER_CITY_ID, cityId).apply()
+    }
+
+    fun areWeatherAlertsEnabled(context: Context): Boolean =
+        getPrefs(context).getBoolean(KEY_WEATHER_ALERTS_ENABLED, false)
+
+    fun saveWeatherAlertsEnabled(context: Context, enabled: Boolean) {
+        getPrefs(context).edit().putBoolean(KEY_WEATHER_ALERTS_ENABLED, enabled).apply()
     }
 }

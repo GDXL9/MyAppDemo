@@ -1,6 +1,7 @@
 package com.example.myappdemo
 
 import android.content.Context
+import java.time.LocalDate
 import java.util.Calendar
 
 /**
@@ -38,10 +39,16 @@ object ShiftConfig {
      * 根据日期计算班次
      */
     fun getShiftForDate(date: Calendar): String {
-        if (shiftCycle.isEmpty()) return "休"
-        val diffMillis = date.timeInMillis - baseCalendar.timeInMillis
-        val diffDays = (diffMillis / (24 * 60 * 60 * 1000)).toInt()
-        val index = ((diffDays % shiftCycle.size) + shiftCycle.size) % shiftCycle.size
-        return shiftCycle[index]
+        val targetDate = LocalDate.of(
+            date.get(Calendar.YEAR),
+            date.get(Calendar.MONTH) + 1,
+            date.get(Calendar.DAY_OF_MONTH)
+        )
+        val baseDate = LocalDate.of(
+            baseCalendar.get(Calendar.YEAR),
+            baseCalendar.get(Calendar.MONTH) + 1,
+            baseCalendar.get(Calendar.DAY_OF_MONTH)
+        )
+        return ShiftCalculator.getShiftForDate(targetDate, baseDate, shiftCycle.toList())
     }
 }

@@ -20,6 +20,7 @@
     <!-- ==================== 背景颜色 (Background) ==================== -->
     <!-- 深色模式页面背景 —— Material 推荐深灰 -->
     <color name="bg_surface">#FF121212</color>
+    <color name="weather_panel">#FF1E2A35</color>
     <!-- 白班背景 —— 降低明度避免刺眼 -->
     <color name="bg_shift_day">#FF1565C0</color>
     <!-- 夜班背景 —— 深灰蓝 -->

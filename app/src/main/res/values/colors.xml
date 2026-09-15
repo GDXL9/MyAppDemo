@@ -25,6 +25,7 @@
     <!-- ==================== 背景颜色 (Background) ==================== -->
     <!-- 页面/卡片表面背景 -->
     <color name="bg_surface">#FFFFFFFF</color>
+    <color name="weather_panel">#FFEAF5FF</color>
     <!-- 白班背景 —— 日历格子中"白"班的背景色 -->
     <color name="bg_shift_day">#FF64B5F6</color>
     <!-- 夜班背景 —— 日历格子中"夜"班的背景色 -->

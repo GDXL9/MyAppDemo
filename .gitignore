@@ -1,5 +1,7 @@
 *.iml
 .gradle
+.gradle-session/
+.kotlin/
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -13,3 +15,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+/PROJECT_ANALYSIS.md
+/.android-session/
+必读-本地约束.txt
